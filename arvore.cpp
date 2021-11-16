@@ -129,8 +129,8 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
     
     while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = noEsq->CriaSubarvore(l);
-      NoArvore *noDir = noDir->CriaSubarvore(l);
+      NoArvore *noEsq = this->CriaSubarvore(l);
+      NoArvore *noDir = this->CriaSubarvore(l);
 
       NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 
