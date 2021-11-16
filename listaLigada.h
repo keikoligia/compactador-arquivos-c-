@@ -1,6 +1,7 @@
 #ifndef LISTALIGADA
 #define LISTALIGADA
 #include "arvore.h" 
+#include "lista.h"
 #define ARVORE
 
 class NoListaLigada
@@ -9,8 +10,13 @@ class NoListaLigada
     NoArvore *No;
     NoListaLigada *Prox;
   public:
-    NoArvore *NovoNoArvore(NoArvore);
-
+    void SetNo(NoArvore*);
+    void SetProx(NoListaLigada*);
+    void SetProx(int);
+    NoArvore* GetNo();
+    NoListaLigada* GetProxLigada();
+    NoListaLigada *NovoNoLista(NoArvore*);
+    NoListaLigada();
 };
 
 #endif

@@ -3,10 +3,8 @@
 #include <stdio.h>
 #include "arvore.h"
 
-class bytes
+class Bytes
 {
-  private:
-
   public:
     int GerarBit(FILE, int, unsigned char);
     void ObterFreqByte(FILE, unsigned int);

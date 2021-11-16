@@ -2,7 +2,6 @@
 #define NOARVORE
 #include "lista.h"
 #include "listaLigada.h"
-#define LISTA
 
 class NoArvore
 {
@@ -11,13 +10,26 @@ class NoArvore
     NoArvore *NoDir;
     NoArvore *No;
     int Freq;
-    char c;
+    char C;
     
   public:
-    NoArvore *NovoNoArvore(unsigned char, int, NoArvore, NoArvore);
-    NoArvore CriaSubarvore(NoLista);
-    NoArvore FazerArvore(NoLista);
-    void InsereNoFila(NoListaLigada, NoLista);
+    void SetNoEsq(NoArvore*);
+    void SetNoDir(NoArvore*);
+    void SetNo(NoArvore);
+    void SetFreq(int);
+    void SetC(unsigned char);
+    int GetFreq();
+    NoArvore* GetNoDir();
+    NoArvore* GetNoEsq(); 
+
+    void SetValores(unsigned char, int, NoArvore, NoArvore);
+    NoArvore *NovoNoArvore(unsigned char, int, NoArvore*, NoArvore*);
+    NoArvore *CriaSubarvore(NoLista*);
+    NoArvore *CriaSubarvore(NoLista**);
+    NoArvore *FazerArvore(unsigned int *);
+    void InsereNoFila(NoListaLigada*, NoLista*);
+    void InsereNoFila(NoListaLigada*, NoLista**);
+    NoArvore();
 };
 
 #endif
