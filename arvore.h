@@ -21,6 +21,7 @@ class NoArvore
     int GetFreq();
     NoArvore* GetNoDir();
     NoArvore* GetNoEsq(); 
+    char GetC();
 
     void SetValores(unsigned char, int, NoArvore, NoArvore);
     NoArvore *NovoNoArvore(unsigned char, int, NoArvore*, NoArvore*);
@@ -29,6 +30,7 @@ class NoArvore
     NoArvore *FazerArvore(unsigned int *);
     void InsereNoFila(NoListaLigada*, NoLista*);
     void InsereNoFila(NoListaLigada*, NoLista**);
+    NoArvore(unsigned char, int, NoArvore*, NoArvore*);
     NoArvore();
 };
 

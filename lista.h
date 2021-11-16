@@ -13,7 +13,7 @@ class NoLista
     int GetQtd();
     void SetInicio(NoListaLigada*);
     void SetQtd(int);
-    NoLista(NoListaLigada, int);
+    NoLista(NoListaLigada*, int);
 };
 
 #endif

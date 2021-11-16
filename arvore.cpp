@@ -3,55 +3,140 @@
 #include "arvore.h"
 #include "listaLigada.h"
 #include "lista.h"
+#include "bytes.h"
 
-NoArvore NoArvore::*NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
+NoArvore::NoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
-  NoArvore *novo;
-  if ((novo = malloc(sizeof(*novo))) == NULL)
-      return NULL;
+  this->C = c;
+  this->Freq = freq;
+  this->NoEsq = esq;
+  this->NoDir = dir;
+}
 
-  novo->Freq = freq;
-  novo->NoDir = dir;
-  novo->NoEsq = esq;
-  novo->C = c;
+void NoArvore::SetNoEsq(NoArvore *noEsq)
+{
+  this->NoEsq = noEsq;
+}
 
+void NoArvore::SetNoDir(NoArvore *noDir)
+{
+  this->NoDir = noDir;
+}
+
+void NoArvore::SetFreq(int freq)
+{
+  this->Freq = freq;
+}
+
+void NoArvore::SetC(unsigned char c)
+{
+  this->C = c;
+}
+
+int NoLista::GetQtd()
+{
+  return this->Qtd;
+}
+
+int NoArvore::GetFreq()
+{
+  return this->Freq;
+}
+
+char NoArvore::GetC()
+{
+  return this->C;
+}
+
+NoArvore* NoArvore::GetNoDir()
+{
+  return this->NoDir;
+}
+
+NoArvore* NoArvore::GetNoEsq()
+{
+  return this->NoEsq;
+}
+
+void NoArvore::InsereNoFila(NoListaLigada* n, NoLista* l)
+{
+  if(!l->GetInicio())
+    l->SetInicio(n);
+
+  else if(n->GetNo()->GetFreq() < l->GetInicio()->GetNo()->GetFreq())
+  {
+    n->SetProx(l->GetInicio());
+    l->SetInicio(n);
+  }
+  else
+  {
+    NoListaLigada *aux = new NoListaLigada();
+    aux = l->GetInicio()->GetProxLigada();
+
+    NoListaLigada *aux2 = l->GetInicio();
+
+    while(aux && aux->GetNo()->GetFreq() <= n->GetNo()->GetFreq())
+    {
+      aux2 = aux;
+      aux = aux2->GetProxLigada();
+    }
+
+    aux2->SetProx(n);
+    n->SetProx(aux);
+  }
+
+  int qtd = l->GetQtd();
+  l->SetQtd(qtd++);
+}
+
+NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
+{
+  NoArvore *novo = new NoArvore(c, freq, esq, dir);
+  if (novo == NULL)
+    return NULL;
+    
   return novo;
 }
 
-NoArvore NoArvore::CriaSubarvore(NoLista *list)
+NoArvore* NoArvore::CriaSubarvore(NoLista *list)
 {
-  NoListaLigada *noListaLigada = list->Inicio;
-  NoArvore *noArv = noListaLigada->No;
+  NoListaLigada *noListaLigada = new NoListaLigada();
+  noListaLigada = list->GetInicio();
 
-  list.inicio = noListaLigada->Prox;
+  NoArvore *noArv = new NoArvore();
+  noArv = noListaLigada->GetNo();
+
+  list->SetInicio(noListaLigada->GetProxLigada());
 
   delete(noListaLigada);
   noListaLigada = NULL;
 
-  list->Qtd;
+  int quant = list->GetQtd();
+  list->SetQtd(quant--);
 
   return noArv;
 }
 
-NoArvore NoArvore::FazerArvore(unsigned *list)
+NoArvore* NoArvore::FazerArvore(unsigned int *list)
 {
-  NoLista l = new NoLista(NULL, 0);
+  NoLista *l = new NoLista(NULL, 0);
+  NoListaLigada *listaLigada = new NoListaLigada();
 
   for(int i = 0; i< 256; i++)
   {
     if(list[i])
-      InsereNoFila(NovoNoLista(i, list[i], NULL, NULL)), &l);
+      this->InsereNoFila(listaLigada->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
     
-    while (l.Qtd > 1)
+    while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = CriaSubArvore(&l);
-      NoArvore *noDir = CriaSubArvore(&l);
+      NoArvore *noEsq = noEsq->CriaSubarvore(l);
+      NoArvore *noDir = noDir->CriaSubarvore(l);
 
-      NoArvore *soma = NovoNoArv('#', noEsq->freq + noDir->freq, noEsq, noDir);
+      NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 
-      InsereNoFila(NovoNoLista(soma), &l);
+      this->InsereNoFila(listaLigada->NovoNoLista(soma), &l); 
     }
 
-    return CriaSubArvore(&l);
+    return this->CriaSubarvore(&l);
   }
 }
