@@ -14,6 +14,10 @@ class NoLista
     void SetInicio(NoListaLigada*);
     void SetQtd(int);
     NoLista(NoListaLigada*, int);
+    NoArvore *CriaSubarvore(NoLista*);
+    NoArvore *CriaSubarvore(NoLista**);
+    void InsereNoFila(NoListaLigada*, NoLista*);
+    void InsereNoFila(NoListaLigada*, NoLista**);
 };
 
 #endif

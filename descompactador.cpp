@@ -1,11 +1,18 @@
+#ifndef DESCOMPACTADOR
+#define DESCOMPACTADOR
 #include "arvore.h"
 #include "lista.h"
+#include "bytes.h"
 #include "listaLigada.h"
 #include "descompactador.h"
-#include "bytes.h"
 #include <stdio.h>
 #include <iostream>
 using namespace std;
+
+Descompactador::Descompactador()
+{
+  
+}
 
 void Descompactador::Descompactar()
 {
@@ -42,17 +49,18 @@ void Descompactador::Descompactar()
 
   while (posicao < tamanho)
   {
-      NoArvore *noAtual = arvore;
+    NoArvore *noAtual = new NoArvore();
+    noAtual = arvore;
 
-      //enquanto o nó nao for folha
-      while (noAtual->GetNoEsq() || noAtual->GetNoDir())
-      {
-          if(bytes->GerarBit(arqComp, posicao++, &aux))
-              noAtual = noAtual->GetNoDir();
-              //caso gerarbit = 1
-          else
-              noAtual = noAtual->GetNoEsq();
-              //caso 0
+    //enquanto o nó nao for folha
+    while (noAtual->GetNoEsq() || noAtual->GetNoDir())
+    {
+        if(bytes->GerarBit(arqComp, posicao++, &aux))
+            noAtual = noAtual->GetNoDir();
+            //caso gerarbit = 1
+        else
+            noAtual = noAtual->GetNoEsq();
+            //caso 0
       }
 
       char caractere = noAtual->GetC();
@@ -61,4 +69,6 @@ void Descompactador::Descompactar()
   
   fclose(arqComp);
   fclose(arqDesc);
-}
+};
+
+#endif

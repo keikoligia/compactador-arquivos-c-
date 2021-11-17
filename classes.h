@@ -1,5 +1,7 @@
-#ifndef NOARVORE
-#define NOARVORE
+#include "arvore.h" 
+#include "lista.h"
+
+
 
 class NoArvore
 {
@@ -20,11 +22,15 @@ class NoArvore
     NoArvore* GetNoDir();
     NoArvore* GetNoEsq(); 
     char GetC();
+
     void SetValores(unsigned char, int, NoArvore, NoArvore);
     NoArvore *NovoNoArvore(unsigned char, int, NoArvore*, NoArvore*);
+    NoArvore *CriaSubarvore(NoLista*);
+    NoArvore *CriaSubarvore(NoLista**);
     NoArvore *FazerArvore(unsigned int *);
     NoArvore(unsigned char, int, NoArvore*, NoArvore*);
     NoArvore();
 };
 
-#endif
+
+
