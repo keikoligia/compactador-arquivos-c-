@@ -1,13 +1,9 @@
-#include "arvore.h"
-#include "lista.h"
-#include "listaLigada.h"
-#include "bytes.h"
-#include "descompactador.h"
+#include "descompactador.cpp"
 #include <iostream>
 
-int main(int argc, char const *argv[])
+int main()
 {
-  Descompactador *descomp = new Descompactador();
-  descomp->Descompactar();
+  Descompactador descomp;
+  descomp.Descompactar(); 
   return 0;
 }

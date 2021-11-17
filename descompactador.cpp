@@ -1,5 +1,3 @@
-#ifndef DESCOMPACTADOR
-#define DESCOMPACTADOR
 #include "arvore.h"
 #include "lista.h"
 #include "bytes.h"
@@ -8,11 +6,6 @@
 #include <stdio.h>
 #include <iostream>
 using namespace std;
-
-Descompactador::Descompactador()
-{
-  
-}
 
 void Descompactador::Descompactar()
 {
@@ -70,5 +63,3 @@ void Descompactador::Descompactar()
   fclose(arqComp);
   fclose(arqDesc);
 };
-
-#endif

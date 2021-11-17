@@ -1,4 +1,7 @@
-#include <stdio.h>
+#ifndef DESCOMPACTADOR
+#define DESCOMPACTADOR
+#include <fstream>
+#include <stdlib.h>
 
 class Descompactador
 {
@@ -10,6 +13,8 @@ class Descompactador
     unsigned lBytes[256];
     unsigned char aux;
   public:
-    void Descompactar();
     Descompactador();
+    void Descompactar();
 };
+
+#endif

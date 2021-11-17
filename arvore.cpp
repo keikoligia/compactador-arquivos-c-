@@ -58,37 +58,6 @@ NoArvore* NoArvore::GetNoEsq()
   return this->NoEsq;
 }
 
-void NoArvore::InsereNoFila(NoListaLigada* n, NoLista* l)
-{
-  if(!l->GetInicio())
-    l->SetInicio(n);
-
-  else if(n->GetNo()->GetFreq() < l->GetInicio()->GetNo()->GetFreq())
-  {
-    n->SetProx(l->GetInicio());
-    l->SetInicio(n);
-  }
-  else
-  {
-    NoListaLigada *aux = new NoListaLigada();
-    aux = l->GetInicio()->GetProxLigada();
-
-    NoListaLigada *aux2 = l->GetInicio();
-
-    while(aux && aux->GetNo()->GetFreq() <= n->GetNo()->GetFreq())
-    {
-      aux2 = aux;
-      aux = aux2->GetProxLigada();
-    }
-
-    aux2->SetProx(n);
-    n->SetProx(aux);
-  }
-
-  int qtd = l->GetQtd();
-  l->SetQtd(qtd++);
-}
-
 NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
   NoArvore *novo = new NoArvore(c, freq, esq, dir);
@@ -96,25 +65,6 @@ NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArv
     return NULL;
     
   return novo;
-}
-
-NoArvore* NoArvore::CriaSubarvore(NoLista *list)
-{
-  NoListaLigada *noListaLigada = new NoListaLigada();
-  noListaLigada = list->GetInicio();
-
-  NoArvore *noArv = new NoArvore();
-  noArv = noListaLigada->GetNo();
-
-  list->SetInicio(noListaLigada->GetProxLigada());
-
-  delete(noListaLigada);
-  noListaLigada = NULL;
-
-  int quant = list->GetQtd();
-  list->SetQtd(quant--);
-
-  return noArv;
 }
 
 NoArvore* NoArvore::FazerArvore(unsigned int *list)
@@ -125,18 +75,18 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
   for(int i = 0; i< 256; i++)
   {
     if(list[i])
-      this->InsereNoFila(listaLigada->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
+      l->InsereNoFila(listaLigada->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
     
     while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = this->CriaSubarvore(l);
-      NoArvore *noDir = this->CriaSubarvore(l);
+      NoArvore *noEsq = l->CriaSubarvore(l);
+      NoArvore *noDir = l->CriaSubarvore(l);
 
       NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 
-      this->InsereNoFila(listaLigada->NovoNoLista(soma), &l); 
+      l->InsereNoFila(listaLigada->NovoNoLista(soma), &l); 
     }
 
-    return this->CriaSubarvore(&l);
+    return l->CriaSubarvore(&l);
   }
 }
