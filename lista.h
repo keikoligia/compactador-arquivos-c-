@@ -1,23 +1,40 @@
-#ifndef LISTA
-#define LISTA
+#ifndef NOLISTA
+#define NOLISTA
 #include "arvore.h"
-#include "listaLigada.h"
 
-class NoLista
+struct NoLista
+{
+  NoArvore *no;
+  struct NoLista *prox;
+  NoLista(){}
+};
+typedef NoLista* NoLista;
+
+class Lista
 {
   private:
-    NoListaLigada *Inicio;
+    NoLista *Inicio;
     int Qtd;
+    
   public:
-    NoListaLigada *GetInicio();
+    Lista(NoLista*, int);
+
+    NoLista *GetInicio();
     int GetQtd();
-    void SetInicio(NoListaLigada*);
+    void SetInicio(NoLista*);
     void SetQtd(int);
-    NoLista(NoListaLigada*, int);
-    NoArvore *CriaSubarvore(NoLista*);
-    NoArvore *CriaSubarvore(NoLista**);
-    void InsereNoFila(NoListaLigada*, NoLista*);
-    void InsereNoFila(NoListaLigada*, NoLista**);
+    void SetNo(NoArvore*); //seta o no da lista
+
+    NoArvore* GetNo();
+    NoArvore *CriaSubarvore(Lista*);
+    NoArvore *CriaSubarvore(Lista**);
+    void InsereNoFila(NoLista*, Lista*);
+    void InsereNoFila(NoLista*, Lista**);
+
+    void SetProx(NoListaLigada*);
+    void SetProx(int);
+    NoLista* GetProxLigada();
+    NoLista* NovoNoLista(NoArvore*);
 };
 
 #endif

@@ -10,13 +10,11 @@ class NoListaLigada
     NoArvore *No;
 
   public:
-    void SetNo(NoArvore*);
     void SetProx(NoListaLigada*);
     void SetProx(int);
-    NoArvore* GetNo();
     NoListaLigada* GetProxLigada();
     NoListaLigada* NovoNoLista(NoArvore*);
-    NoListaLigada();
+    //feito - NoListaLigada();
 };
 
 #endif

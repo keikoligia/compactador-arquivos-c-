@@ -23,7 +23,7 @@ NoListaLigada* NoListaLigada::GetProxLigada()
   return this->Prox;
 }
 
-NoListaLigada* NoListaLigada::NovoNoLista(NoArvore *noArv)
+NoListaLigada* NoLista::NovoNoLista(NoArvore *noArv)
 {
   NoListaLigada *novo = new NoListaLigada();
   if (novo == NULL) 

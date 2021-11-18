@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 
+Descompactador::Descompactador(){}
+
 void Descompactador::Descompactar()
 {
   cout << "Digite o nome do arquivo a ser descompactado: \n";

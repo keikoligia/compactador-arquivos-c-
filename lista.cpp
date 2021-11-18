@@ -1,33 +1,38 @@
 #include "arvore.h"
 #include "lista.h"
 
-NoLista::NoLista(NoListaLigada* inicio, int qtd)
+Lista::Lista(NoLista* inicio, int qtd)
 {
   this->Inicio = inicio;
   this->Qtd = qtd;
 }
 
-void NoLista::SetInicio(NoListaLigada *inicio)
+void Lista::SetInicio(NoLista *inicio)
 {
   this->Inicio = inicio;
 }
 
-void NoLista::SetQtd(int qtd)
+void Lista::SetQtd(int qtd)
 {
   this->Qtd = qtd;
 }
 
-NoListaLigada* NoLista::GetInicio()
+NoLista* Lista::GetInicio()
 {
   return this->Inicio;
 }
 
-int NoLista::GetQtd()
+int Lista::GetQtd()
 {
   return this->Qtd;
 }
 
-void NoLista::InsereNoFila(NoListaLigada* n, NoLista* l)
+NoArvore Lista::GetNo()
+{
+  return this->
+}
+
+void Lista::InsereNoFila(NoLista* n, Lista* l)
 {
   if(!l->GetInicio())
     l->SetInicio(n);
@@ -39,10 +44,11 @@ void NoLista::InsereNoFila(NoListaLigada* n, NoLista* l)
   }
   else
   {
-    NoListaLigada *aux = new NoListaLigada();
+    NoLista *aux = new NoLista();
     aux = l->GetInicio()->GetProxLigada();
 
-    NoListaLigada *aux2 = l->GetInicio();
+    NoLista *aux2 = new NoLista();
+    aux2 = l->GetInicio();
 
     while(aux && aux->GetNo()->GetFreq() <= n->GetNo()->GetFreq())
     {
