@@ -17,6 +17,7 @@ class NoArvore
     void SetFreq(int);
     void SetC(unsigned char);
     void SetValores(unsigned char, int, NoArvore, NoArvore);
+    void SetProx(NoArvore*);
 
     int GetFreq();
     NoArvore* GetNoDir();

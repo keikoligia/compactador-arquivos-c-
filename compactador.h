@@ -11,14 +11,13 @@ class Compactador
   private:
     FILE arqParaComp;
     FILE arqComp;
-    char nomeArqParaComp[20];
     char nomeArqComp[20];
+    char nomeArqDesc[20];
     unsigned lBytes[256];
     unsigned int posicao;
-   public:
-    Compactador();
-    void Compactar();
-
+    unsigned char c;
+    unsigned int tamanho;
+    unsigned char aux;
 };
 
 #endif

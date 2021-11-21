@@ -31,7 +31,7 @@ class Lista
     void InsereNoFila(NoLista*, Lista*);
     void InsereNoFila(NoLista*, Lista**);
 
-    void SetProx(NoListaLigada*);
+    void SetProx(NoLista*);
     void SetProx(int);
     NoLista* GetProxLigada();
     NoLista* NovoNoLista(NoArvore*);

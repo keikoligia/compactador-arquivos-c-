@@ -27,25 +27,30 @@ int Lista::GetQtd()
   return this->Qtd;
 }
 
-NoArvore Lista::GetNo()
+NoLista* Lista::GetProxLigada()
 {
-  return this->
+  return this->Pr
 }
+/*
+void Lista::SetProx(NoLista* no)
+{
+  this->Inicio->no->prox;
+}*/
 
 void Lista::InsereNoFila(NoLista* n, Lista* l)
 {
   if(!l->GetInicio())
     l->SetInicio(n);
 
-  else if(n->GetNo()->GetFreq() < l->GetInicio()->GetNo()->GetFreq())
+  else if((*n)->no->GetFreq() < (*(*l).GetInicio())->no->GetFreq())
   {
-    n->SetProx(l->GetInicio());
+    (*n)->no->SetProx(*(*l->GetInicio()));
     l->SetInicio(n);
   }
   else
   {
     NoLista *aux = new NoLista();
-    aux = l->GetInicio()->GetProxLigada();
+    aux = (*(*l)->GetInicio())->GetProxLigada();
 
     NoLista *aux2 = new NoLista();
     aux2 = l->GetInicio();
@@ -57,11 +62,11 @@ void Lista::InsereNoFila(NoLista* n, Lista* l)
     }
 
     aux2->SetProx(n);
-    n->SetProx(aux);
+    (*n)->no->SetProx(aux);
   }
 
   int qtd = l->GetQtd();
-  l->SetQtd(qtd++);
+  (*l)->SetQtd(qtd++);
 }
 
 NoArvore* NoLista::CriaSubarvore(NoLista *list)
