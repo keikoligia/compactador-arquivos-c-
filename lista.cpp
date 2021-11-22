@@ -1,10 +1,23 @@
 #include "arvore.h"
 #include "lista.h"
+#include <cstddef>
 
 Lista::Lista(NoLista* inicio, int qtd)
 {
   this->Inicio = inicio;
   this->Qtd = qtd;
+}
+
+NoLista* Lista::NovoNoLista(NoArvore* noArv)
+{
+  NoLista* novo = new NoLista();
+  if (novo == NULL) 
+    return NULL;
+    
+  (*novo)->no = noArv;
+  (*novo)->prox = NULL;
+
+  return novo;
 }
 
 void Lista::SetInicio(NoLista *inicio)
@@ -27,15 +40,15 @@ int Lista::GetQtd()
   return this->Qtd;
 }
 
-NoLista* Lista::GetProxLigada()
+NoLista* Lista::GetProxLigada(NoLista* no)
 {
-  return this->Pr
+  return (*(*(no)->prox);
 }
-/*
+
 void Lista::SetProx(NoLista* no)
 {
   this->Inicio->no->prox;
-}*/
+}
 
 void Lista::InsereNoFila(NoLista* n, Lista* l)
 {
@@ -50,7 +63,7 @@ void Lista::InsereNoFila(NoLista* n, Lista* l)
   else
   {
     NoLista *aux = new NoLista();
-    aux = (*(*l)->GetInicio())->GetProxLigada();
+    aux = (*l->GetInicio())->GetProxLigada(n);
 
     NoLista *aux2 = new NoLista();
     aux2 = l->GetInicio();
