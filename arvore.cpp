@@ -56,11 +56,6 @@ NoArvore* NoArvore::GetNoEsq()
 {
   return this->NoEsq;
 }
-/*
-void NoArvore::SetProx(NoArvore* no)
-{
-  this->No
-}*/
 
 NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
@@ -79,7 +74,7 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
   for(int i = 0; i< 256; i++)
   {
     if(list[i])
-      l->InsereNoFila((*noLista)->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
+      l->InsereNoFila(noLista->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
     
     while (l->GetQtd() > 1)
     {
@@ -88,7 +83,7 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
 
       NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 
-      l->InsereNoFila((*noLista)->NovoNoLista(soma), &l); 
+      l->InsereNoFila(noLista->NovoNoLista(soma), &l); 
     }
     return l->CriaSubarvore(&l);
   }

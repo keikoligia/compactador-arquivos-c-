@@ -1,7 +1,6 @@
 #include "arvore.h"
 #include "lista.h"
 #include "bytes.h"
-#include "listaLigada.h"
 #include "descompactador.h"
 #include <stdio.h>
 #include <iostream>

@@ -2,21 +2,23 @@
 #define NOLISTA
 #include "arvore.h"
 
-struct NoLista
+typedef struct NoLista
 {
   NoArvore *no;
   struct NoLista *prox;
   NoLista(){};
-  NoLista* NoLista::NovoNoLista(NoArvore*);
+  NoLista* NovoNoLista(NoArvore*);
+  NoArvore* GetNo(NoLista*);
+  NoLista* GetProxLigada(NoLista*);
+  void SetProx(NoLista*);
 };
-typedef NoLista* NoLista;
 
 class Lista
 {
   private:
     NoLista *Inicio;
     int Qtd;
-
+    
   public:
     Lista(NoLista*, int);
 
@@ -26,15 +28,12 @@ class Lista
     void SetQtd(int);
     void SetNo(NoArvore*); //seta o no da lista
 
-    NoArvore* GetNo();
     NoArvore *CriaSubarvore(Lista*);
     NoArvore *CriaSubarvore(Lista**);
     void InsereNoFila1(NoLista*, Lista*);
-    void InsereNoFila(NoLista, Lista**);
+    void InsereNoFila(NoLista*, Lista**);
 
-    void SetProx(NoLista*);
     void SetProx(int);
-    NoLista* GetProxLigada(NoLista*);
     NoLista* NovoNoLista(NoArvore*);
 };
 

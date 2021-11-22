@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "arvore.h"
 #include "lista.h"
-#include "listaLigada.h"
 #include "bytes.h"
 
 int Bytes::GerarBit(FILE *arq, int pos, unsigned char *aux)
@@ -11,7 +10,7 @@ int Bytes::GerarBit(FILE *arq, int pos, unsigned char *aux)
     fread(aux, 1, 1, arq);
   }
 
-  int result = ((*aux) & (1 << (pos % 8)));
+  int result = ((*aux) & (1 << (pos % 8))); 
 
   if(result != 0) return 1;
   else
@@ -45,7 +44,7 @@ bool Bytes::BuscaCodigoByte(NoArvore *no, unsigned char c, char *buffer, int tam
         buffer[tam] = '\0';
 
       return codEncontrado;
-    }
+    }  
 }
 
 void Bytes::ObterFreqByte(FILE *arq, unsigned int *lista)
@@ -55,7 +54,5 @@ void Bytes::ObterFreqByte(FILE *arq, unsigned int *lista)
   while (fread(&c, 1, 1, arq))
       lista[(unsigned char)c]++;
 
-  fseek(arq, 0, SEEK_SET);
+  fseek(arq, 0, SEEK_SET); 
 }
-
-

@@ -8,14 +8,19 @@ Lista::Lista(NoLista* inicio, int qtd)
   this->Qtd = qtd;
 }
 
+NoArvore* NoLista::GetNo(NoLista* no)
+{
+  return this->no;
+}
+
 NoLista* Lista::NovoNoLista(NoArvore* noArv)
 {
   NoLista* novo = new NoLista();
   if (novo == NULL) 
     return NULL;
     
-  (*novo)->no = noArv;
-  (*novo)->prox = NULL;
+  novo->no = noArv;
+  novo->prox = NULL;
 
   return novo;
 }
@@ -40,60 +45,60 @@ int Lista::GetQtd()
   return this->Qtd;
 }
 
-NoLista* Lista::GetProxLigada(NoLista* no)
+NoLista* NoLista::GetProxLigada(NoLista* no)
 {
-  return (*(*(no)->prox);
+  return this->prox;
 }
 
-void Lista::SetProx(NoLista* no)
+void NoLista::SetProx(NoLista* no)
 {
-  this->Inicio->no->prox;
+  this->prox;
 }
 
-void Lista::InsereNoFila(NoLista* n, Lista* l)
+void Lista::InsereNoFila1(NoLista* n, Lista* l)
 {
   if(!l->GetInicio())
     l->SetInicio(n);
 
-  else if((*n)->no->GetFreq() < (*(*l).GetInicio())->no->GetFreq())
+  else if(n->no->GetFreq() < l->Inicio->no->GetFreq())
   {
-    (*n)->no->SetProx(*(*l->GetInicio()));
+    n->prox = l->GetInicio();
     l->SetInicio(n);
   }
   else
   {
     NoLista *aux = new NoLista();
-    aux = (*l->GetInicio())->GetProxLigada(n);
+    aux = l->GetInicio()->GetProxLigada(n);
 
     NoLista *aux2 = new NoLista();
     aux2 = l->GetInicio();
 
-    while(aux && aux->GetNo()->GetFreq() <= n->GetNo()->GetFreq())
+    while(aux && aux->no->GetFreq() <= n->no->GetFreq())
     {
       aux2 = aux;
-      aux = aux2->GetProxLigada();
+      aux = aux2->GetProxLigada(aux);
     }
 
-    aux2->SetProx(n);
-    (*n)->no->SetProx(aux);
+    aux2->prox = n;
+    n->prox = aux;
   }
 
   int qtd = l->GetQtd();
-  (*l)->SetQtd(qtd++);
+  l->SetQtd(qtd++);
 }
 
-NoArvore* NoLista::CriaSubarvore(NoLista *list)
+NoArvore* Lista::CriaSubarvore(Lista *list)
 {
-  NoListaLigada *noListaLigada = new NoListaLigada();
-  noListaLigada = list->GetInicio();
+  NoLista *noLista = new NoLista();
+  noLista = list->GetInicio();
 
   NoArvore *noArv = new NoArvore();
-  noArv = noListaLigada->GetNo();
+  noArv = noLista->GetNo(noLista);
 
-  list->SetInicio(noListaLigada->GetProxLigada());
+  list->SetInicio(noLista->GetProxLigada(noLista));
 
-  delete(noListaLigada);
-  noListaLigada = nullptr ;
+  delete(noLista);
+  noLista = nullptr ;
 
   int quant = list->GetQtd();
   list->SetQtd(quant--);
