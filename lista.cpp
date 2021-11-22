@@ -39,16 +39,16 @@ int Lista::GetQtd()
 {
   return this->Qtd;
 }
-/*
-NoLista* Lista::GetProxLigada()
+
+NoLista* Lista::GetProxLigada(NoLista* no)
 {
-  return this->Pr
+  return (*(*(no)->prox);
 }
 
 void Lista::SetProx(NoLista* no)
 {
   this->Inicio->no->prox;
-}*/
+}
 
 void Lista::InsereNoFila(NoLista* n, Lista* l)
 {
@@ -63,7 +63,7 @@ void Lista::InsereNoFila(NoLista* n, Lista* l)
   else
   {
     NoLista *aux = new NoLista();
-    aux = (*(*l)->GetInicio())->GetProxLigada();
+    aux = (*l->GetInicio())->GetProxLigada(n);
 
     NoLista *aux2 = new NoLista();
     aux2 = l->GetInicio();
