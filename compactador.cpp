@@ -7,6 +7,8 @@
 #include <iostream>
 using namespace std;
 
+Compactador::Compactador(){}
+
 void Compactador::Compactar()
 {
     cout << "Digite o nome do arquivo a ser compactado: \n";
@@ -71,3 +73,31 @@ void Compactador::Compactar()
     fclose(arqParaComp);
     fclose(arqComp);
 }
+
+void Compactador::Ler(string nomeArquivo)
+{
+    ifstream source;
+    source.open(filename.c_str());
+
+    if (!source)
+    {
+        cout << "File not found!\n";
+        exit(-1);
+    }
+
+    if (!source.is_open())
+    {
+        cout << "It was not possible open the file!\n";
+        exit(-1);
+    }
+
+    char head;
+
+    stringstream buffer;
+    buffer << source.rdbuf();
+
+    source.close();
+
+    return buffer.str();
+}
+

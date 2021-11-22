@@ -15,7 +15,7 @@ class Lista
   private:
     NoLista *Inicio;
     int Qtd;
-    
+
   public:
     Lista(NoLista*, int);
 
