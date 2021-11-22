@@ -1,10 +1,23 @@
 #include "arvore.h"
 #include "lista.h"
+#include <cstddef>
 
 Lista::Lista(NoLista* inicio, int qtd)
 {
   this->Inicio = inicio;
   this->Qtd = qtd;
+}
+
+NoLista* Lista::NovoNoLista(NoArvore* noArv)
+{
+  NoLista* novo = new NoLista();
+  if (novo == NULL) 
+    return NULL;
+    
+  (*novo)->no = noArv;
+  (*novo)->prox = NULL;
+
+  return novo;
 }
 
 void Lista::SetInicio(NoLista *inicio)
@@ -26,12 +39,12 @@ int Lista::GetQtd()
 {
   return this->Qtd;
 }
-
+/*
 NoLista* Lista::GetProxLigada()
 {
   return this->Pr
 }
-/*
+
 void Lista::SetProx(NoLista* no)
 {
   this->Inicio->no->prox;

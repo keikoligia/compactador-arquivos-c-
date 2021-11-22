@@ -6,7 +6,8 @@ struct NoLista
 {
   NoArvore *no;
   struct NoLista *prox;
-  NoLista(){}
+  NoLista(){};
+  NoLista* NovoNoLista(NoArvore*);
 };
 typedef NoLista* NoLista;
 
@@ -29,12 +30,12 @@ class Lista
     NoArvore *CriaSubarvore(Lista*);
     NoArvore *CriaSubarvore(Lista**);
     void InsereNoFila(NoLista*, Lista*);
-    void InsereNoFila(NoLista*, Lista**);
+    void InsereNoFila(NoLista*, Lista&);
 
     void SetProx(NoLista*);
     void SetProx(int);
     NoLista* GetProxLigada();
-    NoLista* NovoNoLista(NoArvore*);
+    //NoLista* NovoNoLista(NoArvore*);
 };
 
 #endif
