@@ -1,10 +1,15 @@
-#include "arvore.h"
-#include "lista.h"
-#include "bytes.h"
-#include "listaLigada.h"
+#define ASCII 256
+#define BYTE_SIZE 8
+
+#include <math.h>
 #include "compactador.h"
+#include "bytes.h"
+#include "arvore.h"
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 Compactador::Compactador(){}
@@ -14,28 +19,30 @@ void Compactador::Compactar()
     cout << "Digite o nome do arquivo a ser compactado: \n";
     cin >> this->nomeArqParaComp;
 
-    this->arqParaComp = fopen(this->nomeArqParaComp, "rb");
+    this->arqParaComp = fopen(this->nomeArqParaComp, "r");
 
     if (arqParaComp == NULL)
     {
-        cout >> "Arquivo não encontrado!";
+        cout << "Arquivo nï¿½o encontrado!";
         exit(0);
     }
 
-    cout << "Digite o nome do arquivo que guardará a compactacao: \n";
+    cout << "Digite o nome do arquivo que guardarï¿½ a compactacao: \n";
     cin >> this->nomeArqComp;
 
-    this->arqComp = fopen(this->nomeArqComp, "wb");
+    this->arqComp = fopen(this->nomeArqComp, "w");
 
     if (arqComp == NULL)
     {
-        cout >> "Por favor digite corretamente o nome do arquivo!";
+        cout << "Por favor digite corretamente o nome do arquivo!";
         exit(0);
     }
 
-    ObterFreqByte(this->arqParaComp, this->lBytes);
+    Bytes *bytes = new Bytes();
+    bytes->ObterFreqByte(this->arqParaComp, this->lBytes);
 
-    noArvore *arvore = FazerArvore(this->lBytes);
+    NoArvore *arvore = new NoArvore();
+    arvore->FazerArvore(this->lBytes);
 
     unsigned int tamanho;
     unsigned char aux;
@@ -48,7 +55,7 @@ void Compactador::Compactar()
     {
         char buffer[1024] = {0};
 
-        BuscaCodigoByte(arvore, c, buffer, 0);
+        bytes->BuscaCodigoByte(arvore, c, buffer, 0);
 
         for (char *i = buffer; *i; i++)
         {
@@ -74,30 +81,6 @@ void Compactador::Compactar()
     fclose(arqComp);
 }
 
-void Compactador::Ler(string nomeArquivo)
-{
-    ifstream source;
-    source.open(filename.c_str());
 
-    if (!source)
-    {
-        cout << "File not found!\n";
-        exit(-1);
-    }
 
-    if (!source.is_open())
-    {
-        cout << "It was not possible open the file!\n";
-        exit(-1);
-    }
-
-    char head;
-
-    stringstream buffer;
-    buffer << source.rdbuf();
-
-    source.close();
-
-    return buffer.str();
-}
 
