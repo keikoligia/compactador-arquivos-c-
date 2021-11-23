@@ -2,6 +2,9 @@
 #define DESCOMPACTADOR
 #include <fstream>
 #include <stdlib.h>
+#include <iostream>
+#include <string>
+using namespace std;
 
 class Descompactador
 {

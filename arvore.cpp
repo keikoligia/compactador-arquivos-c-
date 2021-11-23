@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include "arvore.h"
 #include "lista.h"
-#include "bytes.h"
+
+NoArvore::NoArvore()
+{
+
+}
 
 NoArvore::NoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
@@ -32,11 +36,6 @@ void NoArvore::SetC(unsigned char c)
   this->C = c;
 }
 
-int Lista::GetQtd()
-{
-  return this->Qtd;
-}
-
 int NoArvore::GetFreq()
 {
   return this->Freq;
@@ -62,7 +61,7 @@ NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArv
   NoArvore *novo = new NoArvore(c, freq, esq, dir);
   if (novo == NULL)
     return NULL;
-    
+
   return novo;
 }
 
@@ -75,16 +74,15 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
   {
     if(list[i])
       l->InsereNoFila(noLista->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
-    
+  }
     while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = l->CriaSubarvore(l);
-      NoArvore *noDir = l->CriaSubarvore(l);
+      NoArvore *noEsq = l->CriaSubarvore(&l);
+      NoArvore *noDir = l->CriaSubarvore(&l);
 
       NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 
-      l->InsereNoFila(noLista->NovoNoLista(soma), &l); 
+      l->InsereNoFila(noLista->NovoNoLista(soma), &l);
     }
     return l->CriaSubarvore(&l);
-  }
 }

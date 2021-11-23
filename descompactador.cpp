@@ -4,6 +4,8 @@
 #include "descompactador.h"
 #include <stdio.h>
 #include <iostream>
+#include <string>		// Necessário para usar strings
+
 using namespace std;
 
 Descompactador::Descompactador(){}
@@ -16,20 +18,20 @@ void Descompactador::Descompactar()
 
   if(arqComp == NULL)
   {
-    cout << "Arquivo nÃ£o encontrado!";
+    cout << "Arquivo não encontrado!";
     exit(0);
   }
 
-  cout << "Digite o nome do arquivo que guardarÃ¡ a compactaÃ§Ã£o: \n";
-  cin >> this->nomeArqComp;
-  this->arqComp = fopen(this->nomeArqComp, "r");
+  cout << "Digite o nome do arquivo que guardará a compactação: \n";
+  cin >> this->nomeArqDesc;
+  this->arqDesc = fopen(this->nomeArqDesc, "w");
 
-  if(arqComp == NULL)
+  if(arqDesc == NULL)
   {
     cout << "Por favor digite corretamente o nome do arquivo!";
     exit(0);
   }
-  
+
   fread(this->lBytes, sizeof(unsigned int), 256,  this->arqComp);
 
   NoArvore *arvore = new NoArvore();
@@ -37,7 +39,7 @@ void Descompactador::Descompactar()
 
   unsigned tamanho;
   fread(&tamanho, sizeof(tamanho), 1, this->arqComp);
-  
+
   unsigned int posicao;
   Bytes *bytes = new Bytes();
 
@@ -46,7 +48,7 @@ void Descompactador::Descompactar()
     NoArvore *noAtual = new NoArvore();
     noAtual = arvore;
 
-    //enquanto o nÃ³ nao for folha
+    //enquanto o nó nao for folha
     while (noAtual->GetNoEsq() || noAtual->GetNoDir())
     {
         if(bytes->GerarBit(arqComp, posicao++, &aux))
@@ -60,7 +62,7 @@ void Descompactador::Descompactar()
       char caractere = noAtual->GetC();
       fwrite(&(caractere), 1, 1, this->arqDesc);
   }
-  
+
   fclose(arqComp);
   fclose(arqDesc);
 };

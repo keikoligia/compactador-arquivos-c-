@@ -8,17 +8,21 @@ Lista::Lista(NoLista* inicio, int qtd)
   this->Qtd = qtd;
 }
 
+Lista::Lista() { }
+
+NoLista::NoLista() { }
+
 NoArvore* NoLista::GetNo(NoLista* no)
 {
   return this->no;
 }
 
-NoLista* Lista::NovoNoLista(NoArvore* noArv)
+NoLista* NoLista::NovoNoLista(NoArvore* noArv)
 {
   NoLista* novo = new NoLista();
-  if (novo == NULL) 
+  if (novo == NULL)
     return NULL;
-    
+
   novo->no = noArv;
   novo->prox = NULL;
 
@@ -55,23 +59,23 @@ void NoLista::SetProx(NoLista* no)
   this->prox;
 }
 
-void Lista::InsereNoFila1(NoLista* n, Lista* l)
+void Lista::InsereNoFila(NoLista* n, Lista** l)
 {
-  if(!l->GetInicio())
-    l->SetInicio(n);
+  if(!(*l)->GetInicio())
+    (*l)->SetInicio(n);
 
-  else if(n->no->GetFreq() < l->Inicio->no->GetFreq())
+  else if(n->no->GetFreq() < (*l)->Inicio->no->GetFreq())
   {
-    n->prox = l->GetInicio();
-    l->SetInicio(n);
+    n->prox = (*l)->GetInicio();
+    (*l)->SetInicio(n);
   }
   else
   {
     NoLista *aux = new NoLista();
-    aux = l->GetInicio()->GetProxLigada(n);
+    aux = (*l)->GetInicio()->GetProxLigada(n);
 
     NoLista *aux2 = new NoLista();
-    aux2 = l->GetInicio();
+    aux2 = (*l)->GetInicio();
 
     while(aux && aux->no->GetFreq() <= n->no->GetFreq())
     {
@@ -83,25 +87,25 @@ void Lista::InsereNoFila1(NoLista* n, Lista* l)
     n->prox = aux;
   }
 
-  int qtd = l->GetQtd();
-  l->SetQtd(qtd++);
+  int qtd = (*l)->GetQtd();
+  (*l)->SetQtd(qtd++);
 }
 
-NoArvore* Lista::CriaSubarvore(Lista *list)
+NoArvore* Lista::CriaSubarvore(Lista **list)
 {
   NoLista *noLista = new NoLista();
-  noLista = list->GetInicio();
+  noLista = (*list)->GetInicio();
 
   NoArvore *noArv = new NoArvore();
   noArv = noLista->GetNo(noLista);
 
-  list->SetInicio(noLista->GetProxLigada(noLista));
+  (*list)->SetInicio(noLista->GetProxLigada(noLista));
 
   delete(noLista);
   noLista = nullptr ;
 
-  int quant = list->GetQtd();
-  list->SetQtd(quant--);
+  int quant = (*list)->GetQtd();
+  (*list)->SetQtd(quant--);
 
   return noArv;
 }

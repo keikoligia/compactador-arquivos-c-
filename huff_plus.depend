@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1637166493 source:c:\huff_plus\main.cpp
+	<iostream>
+	"descompactador.h"
+
+1637633172 c:\huff_plus\descompactador.h
+	<fstream>
+	<stdlib.h>
+	<iostream>
+	<string>
+
+1637625553 source:c:\huff_plus\bytes.cpp
+	<stdio.h>
+	"arvore.h"
+	"lista.h"
+	"bytes.h"
+
+1637366726 c:\huff_plus\arvore.h
+
+1637630626 c:\huff_plus\lista.h
+	"arvore.h"
+
+1637028565 c:\huff_plus\bytes.h
+	<stdio.h>
+	"arvore.h"
+
+1637633224 source:c:\huff_plus\descompactador.cpp
+	"arvore.h"
+	"lista.h"
+	"bytes.h"
+	"descompactador.h"
+	<stdio.h>
+	<iostream>
+	<string>
+
+1637630635 source:c:\huff_plus\lista.cpp
+	"arvore.h"
+	"lista.h"
+	<cstddef>
+
+1637630463 source:c:\huff_plus\arvore.cpp
+	<string.h>
+	<stdlib.h>
+	"arvore.h"
+	"lista.h"
+
