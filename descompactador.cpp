@@ -14,7 +14,7 @@ void Descompactador::Descompactar()
 {
   cout << "Digite o nome do arquivo a ser descompactado: \n";
   cin >> this->nomeArqComp;
-  this->arqComp = fopen(this->nomeArqComp, "r");
+  this->arqComp = fopen(this->nomeArqComp, "rb");
 
   if(arqComp == NULL)
   {
@@ -24,7 +24,7 @@ void Descompactador::Descompactar()
 
   cout << "Digite o nome do arquivo que guardará a compactação: \n";
   cin >> this->nomeArqDesc;
-  this->arqDesc = fopen(this->nomeArqDesc, "w");
+  this->arqDesc = fopen(this->nomeArqDesc, "wb");
 
   if(arqDesc == NULL)
   {
@@ -52,14 +52,20 @@ void Descompactador::Descompactar()
     while (noAtual->GetNoEsq() || noAtual->GetNoDir())
     {
         if(bytes->GerarBit(arqComp, posicao++, &aux))
+        {
+            //cout << noAtual->GetC() << "1no1";
             noAtual = noAtual->GetNoDir();
-            //caso gerarbit = 1
+
+        }
         else
+        {
+            //cout << noAtual->GetC();
             noAtual = noAtual->GetNoEsq();
-            //caso 0
+        }
       }
 
       char caractere = noAtual->GetC();
+      cout << caractere;
       fwrite(&(caractere), 1, 1, this->arqDesc);
   }
 

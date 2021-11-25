@@ -25,13 +25,16 @@ class Lista
 
     NoLista *GetInicio();
     int GetQtd();
+    int GetQtdMais();
+    int GetQtdMenos();
+
     void SetInicio(NoLista*);
     void SetQtd(int);
     void SetNo(NoArvore*); //seta o no da lista
 
-    NoArvore *CriaSubarvore(Lista*);
+    //NoArvore *CriaSubarvore(Lista*);
     NoArvore *CriaSubarvore(Lista**);
-    void InsereNoFila1(NoLista*, Lista*);
+    //void InsereNoFila1(NoLista*, Lista*);
     void InsereNoFila(NoLista*, Lista**);
 
     void SetProx(int);

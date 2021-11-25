@@ -3,10 +3,7 @@
 #include "arvore.h"
 #include "lista.h"
 
-NoArvore::NoArvore()
-{
-
-}
+NoArvore::NoArvore(){}
 
 NoArvore::NoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
@@ -77,8 +74,11 @@ NoArvore* NoArvore::FazerArvore(unsigned int *list)
   }
     while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = l->CriaSubarvore(&l);
-      NoArvore *noDir = l->CriaSubarvore(&l);
+      NoArvore *noEsq = new NoArvore();
+      noEsq = l->CriaSubarvore(&l);
+
+      NoArvore *noDir = new NoArvore();
+      noDir = l->CriaSubarvore(&l);
 
       NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
 

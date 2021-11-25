@@ -49,6 +49,16 @@ int Lista::GetQtd()
   return this->Qtd;
 }
 
+int Lista::GetQtdMais()
+{
+  return this->Qtd + 1;
+}
+
+int Lista::GetQtdMenos()
+{
+  return this->Qtd - 1;
+}
+
 NoLista* NoLista::GetProxLigada(NoLista* no)
 {
   return this->prox;
@@ -87,8 +97,8 @@ void Lista::InsereNoFila(NoLista* n, Lista** l)
     n->prox = aux;
   }
 
-  int qtd = (*l)->GetQtd();
-  (*l)->SetQtd(qtd++);
+  int qtd = (*l)->GetQtdMais();
+  (*l)->SetQtd(qtd);
 }
 
 NoArvore* Lista::CriaSubarvore(Lista **list)
@@ -104,8 +114,8 @@ NoArvore* Lista::CriaSubarvore(Lista **list)
   delete(noLista);
   noLista = nullptr ;
 
-  int quant = (*list)->GetQtd();
-  (*list)->SetQtd(quant--);
+  int quant = (*list)->GetQtdMenos();
+  (*list)->SetQtd(quant);
 
   return noArv;
 }

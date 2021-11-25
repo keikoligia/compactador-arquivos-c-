@@ -1,15 +1,17 @@
 #ifndef NOARVORE
 #define NOARVORE
 
-class NoArvore
+struct NoArvore
 {
-  private:
     NoArvore *NoEsq;
     NoArvore *NoDir;
     NoArvore *No;
     int Freq;
     char C;
-    
+};
+
+class NoArvore
+{
   public:
     void SetNoEsq(NoArvore*);
     void SetNoDir(NoArvore*);
@@ -21,7 +23,7 @@ class NoArvore
 
     int GetFreq();
     NoArvore* GetNoDir();
-    NoArvore* GetNoEsq(); 
+    NoArvore* GetNoEsq();
     char GetC();
 
     NoArvore *NovoNoArvore(unsigned char, int, NoArvore*, NoArvore*);
