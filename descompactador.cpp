@@ -4,7 +4,7 @@
 #include "descompactador.h"
 #include <stdio.h>
 #include <iostream>
-#include <string>		// Necessário para usar strings
+#include <string>		// Necessï¿½rio para usar strings
 
 using namespace std;
 
@@ -14,17 +14,17 @@ void Descompactador::Descompactar()
 {
   cout << "Digite o nome do arquivo a ser descompactado: \n";
   cin >> this->nomeArqComp;
-  this->arqComp = fopen(this->nomeArqComp, "rb");
+  this->arqComp = fopen(this->nomeArqComp, "r");
 
   if(arqComp == NULL)
   {
-    cout << "Arquivo não encontrado!";
+    cout << "Arquivo nï¿½o encontrado!";
     exit(0);
   }
 
-  cout << "Digite o nome do arquivo que guardará a compactação: \n";
+  cout << "Digite o nome do arquivo que guardarï¿½ a compactaï¿½ï¿½o: \n";
   cin >> this->nomeArqDesc;
-  this->arqDesc = fopen(this->nomeArqDesc, "wb");
+  this->arqDesc = fopen(this->nomeArqDesc, "w");
 
   if(arqDesc == NULL)
   {
@@ -48,24 +48,18 @@ void Descompactador::Descompactar()
     NoArvore *noAtual = new NoArvore();
     noAtual = arvore;
 
-    //enquanto o nó nao for folha
+    //enquanto o nï¿½ nao for folha
     while (noAtual->GetNoEsq() || noAtual->GetNoDir())
     {
         if(bytes->GerarBit(arqComp, posicao++, &aux))
-        {
-            //cout << noAtual->GetC() << "1no1";
             noAtual = noAtual->GetNoDir();
-
-        }
+            //caso gerarbit = 1
         else
-        {
-            //cout << noAtual->GetC();
             noAtual = noAtual->GetNoEsq();
-        }
+            //caso 0
       }
 
       char caractere = noAtual->GetC();
-      cout << caractere;
       fwrite(&(caractere), 1, 1, this->arqDesc);
   }
 

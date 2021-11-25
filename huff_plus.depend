@@ -17,14 +17,14 @@
 
 1637703666 c:\huff_plus\arvore.h
 
-1637842629 c:\huff_plus\lista.h
+1637630626 c:\huff_plus\lista.h
 	"arvore.h"
 
 1637028565 c:\huff_plus\bytes.h
 	<stdio.h>
 	"arvore.h"
 
-1637841967 source:c:\huff_plus\descompactador.cpp
+1637633224 source:c:\huff_plus\descompactador.cpp
 	"arvore.h"
 	"lista.h"
 	"bytes.h"
@@ -33,12 +33,12 @@
 	<iostream>
 	<string>
 
-1637842636 source:c:\huff_plus\lista.cpp
+1637630635 source:c:\huff_plus\lista.cpp
 	"arvore.h"
 	"lista.h"
 	<cstddef>
 
-1637842039 source:c:\huff_plus\arvore.cpp
+1637703785 source:c:\huff_plus\arvore.cpp
 	<string.h>
 	<stdlib.h>
 	"arvore.h"

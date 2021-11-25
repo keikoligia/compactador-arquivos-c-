@@ -1,13 +1,16 @@
 #ifndef NOARVORE
 #define NOARVORE
 
-struct NoArvore
+struct NoArv
 {
-    NoArvore *NoEsq;
-    NoArvore *NoDir;
-    NoArvore *No;
+    NoArv();
+    NoArv *NoEsq;
+    NoArv *NoDir;
+    NoArv *No;
     int Freq;
     char C;
+    NoArv *NovoNoArvore(unsigned char, int, NoArv*, NoArv*);
+
 };
 
 class NoArvore
@@ -26,8 +29,7 @@ class NoArvore
     NoArvore* GetNoEsq();
     char GetC();
 
-    NoArvore *NovoNoArvore(unsigned char, int, NoArvore*, NoArvore*);
-    NoArvore *FazerArvore(unsigned int *);
+    NoArv* FazerArvore(unsigned int *);
     NoArvore(unsigned char, int, NoArvore*, NoArvore*);
     NoArvore();
 };

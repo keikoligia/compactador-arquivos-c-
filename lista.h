@@ -5,10 +5,10 @@
 struct NoLista
 {
   NoLista();
-  NoArvore *no;
+  NoArv *no;
   struct NoLista *prox;
-  NoLista* NovoNoLista(NoArvore*);
-  NoArvore* GetNo(NoLista*);
+  NoLista* NovoNoLista(NoArv*);
+  NoArv* GetNo(NoLista*);
   NoLista* GetProxLigada(NoLista*);
   void SetProx(NoLista*);
 };
@@ -27,14 +27,13 @@ class Lista
     int GetQtd();
     int GetQtdMais();
     int GetQtdMenos();
-
     void SetInicio(NoLista*);
     void SetQtd(int);
-    void SetNo(NoArvore*); //seta o no da lista
+    void SetNo(NoArv*); //seta o no da lista
 
     //NoArvore *CriaSubarvore(Lista*);
-    NoArvore *CriaSubarvore(Lista**);
-    //void InsereNoFila1(NoLista*, Lista*);
+    NoArv* CriaSubarvore(Lista**);
+    void InsereNoFila1(NoLista*, Lista*);
     void InsereNoFila(NoLista*, Lista**);
 
     void SetProx(int);

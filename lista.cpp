@@ -12,12 +12,12 @@ Lista::Lista() { }
 
 NoLista::NoLista() { }
 
-NoArvore* NoLista::GetNo(NoLista* no)
+NoArv* NoLista::GetNo(NoLista* no)
 {
   return this->no;
 }
 
-NoLista* NoLista::NovoNoLista(NoArvore* noArv)
+NoLista* NoLista::NovoNoLista(NoArv* noArv)
 {
   NoLista* novo = new NoLista();
   if (novo == NULL)
@@ -74,7 +74,7 @@ void Lista::InsereNoFila(NoLista* n, Lista** l)
   if(!(*l)->GetInicio())
     (*l)->SetInicio(n);
 
-  else if(n->no->GetFreq() < (*l)->Inicio->no->GetFreq())
+  else if(n->no->Freq < (*l)->Inicio->no->Freq)
   {
     n->prox = (*l)->GetInicio();
     (*l)->SetInicio(n);
@@ -87,7 +87,7 @@ void Lista::InsereNoFila(NoLista* n, Lista** l)
     NoLista *aux2 = new NoLista();
     aux2 = (*l)->GetInicio();
 
-    while(aux && aux->no->GetFreq() <= n->no->GetFreq())
+    while(aux && aux->no->Freq <= n->no->Freq)
     {
       aux2 = aux;
       aux = aux2->GetProxLigada(aux);
@@ -101,12 +101,12 @@ void Lista::InsereNoFila(NoLista* n, Lista** l)
   (*l)->SetQtd(qtd);
 }
 
-NoArvore* Lista::CriaSubarvore(Lista **list)
+NoArv* Lista::CriaSubarvore(Lista **list)
 {
   NoLista *noLista = new NoLista();
   noLista = (*list)->GetInicio();
 
-  NoArvore *noArv = new NoArvore();
+  NoArv *noArv = new NoArv();
   noArv = noLista->GetNo(noLista);
 
   (*list)->SetInicio(noLista->GetProxLigada(noLista));

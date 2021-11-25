@@ -5,6 +5,8 @@
 
 NoArvore::NoArvore(){}
 
+NoArv::NoArv() {}
+/*
 NoArvore::NoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
 {
   this->C = c;
@@ -45,42 +47,45 @@ char NoArvore::GetC()
 
 NoArvore* NoArvore::GetNoDir()
 {
-  return this->NoDir;
+  return (*this).NoDir;
 }
 
 NoArvore* NoArvore::GetNoEsq()
 {
-  return this->NoEsq;
+  return (*this).NoEsq;
 }
-
-NoArvore* NoArvore::NovoNoArvore(unsigned char c, int freq, NoArvore *esq, NoArvore *dir)
+*/
+NoArv* NoArv::NovoNoArvore(unsigned char c, int freq, NoArv *esq, NoArv *dir)
 {
-  NoArvore *novo = new NoArvore(c, freq, esq, dir);
+  NoArv *novo = new NoArv();
   if (novo == NULL)
     return NULL;
+
+    novo->C = c;
+    novo->Freq = freq;
+    novo->NoEsq = esq;
+    novo->NoDir = dir;
 
   return novo;
 }
 
-NoArvore* NoArvore::FazerArvore(unsigned int *list)
+NoArv* NoArvore::FazerArvore(unsigned int *list)
 {
   NoLista *noLista = new NoLista();
   Lista *l = new Lista(NULL, 0);
+  NoArv *noArv = new NoArv();
 
   for(int i = 0; i< 256; i++)
   {
     if(list[i])
-      l->InsereNoFila(noLista->NovoNoLista(this->NovoNoArvore(i, list[i], NULL, NULL)), &l);
+      l->InsereNoFila(noLista->NovoNoLista(noArv->NovoNoArvore(i, list[i], NULL, NULL)), &l);
   }
     while (l->GetQtd() > 1)
     {
-      NoArvore *noEsq = new NoArvore();
-      noEsq = l->CriaSubarvore(&l);
+      NoArv *noEsq = l->CriaSubarvore(&l);
+      NoArv *noDir = l->CriaSubarvore(&l);
 
-      NoArvore *noDir = new NoArvore();
-      noDir = l->CriaSubarvore(&l);
-
-      NoArvore *soma = this->NovoNoArvore('#', noEsq->GetFreq() + noDir->GetFreq(), noEsq, noDir);
+      NoArv *soma = noArv->NovoNoArvore('#', noEsq->Freq + noDir->Freq, noEsq, noDir);
 
       l->InsereNoFila(noLista->NovoNoLista(soma), &l);
     }
