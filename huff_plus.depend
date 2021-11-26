@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1637702968 source:c:\huff_plus\main.cpp
+1637958267 source:c:\huff_plus\main.cpp
 	<iostream>
 	"descompactador.h"
+	"Compactador.h"
 
 1637633172 c:\huff_plus\descompactador.h
 	<fstream>
@@ -9,38 +10,54 @@
 	<iostream>
 	<string>
 
-1637625553 source:c:\huff_plus\bytes.cpp
+1637855051 source:c:\huff_plus\bytes.cpp
 	<stdio.h>
 	"arvore.h"
 	"lista.h"
 	"bytes.h"
 
-1637703666 c:\huff_plus\arvore.h
+1637949234 c:\huff_plus\arvore.h
 
-1637630626 c:\huff_plus\lista.h
+1637857493 c:\huff_plus\lista.h
 	"arvore.h"
 
-1637028565 c:\huff_plus\bytes.h
+1637855068 c:\huff_plus\bytes.h
 	<stdio.h>
 	"arvore.h"
 
-1637633224 source:c:\huff_plus\descompactador.cpp
+1637957475 source:c:\huff_plus\descompactador.cpp
 	"arvore.h"
 	"lista.h"
 	"bytes.h"
 	"descompactador.h"
 	<stdio.h>
 	<iostream>
-	<string>
 
-1637630635 source:c:\huff_plus\lista.cpp
+1637858591 source:c:\huff_plus\lista.cpp
 	"arvore.h"
 	"lista.h"
 	<cstddef>
 
-1637703785 source:c:\huff_plus\arvore.cpp
+1637957472 source:c:\huff_plus\arvore.cpp
 	<string.h>
 	<stdlib.h>
 	"arvore.h"
 	"lista.h"
+	<stdio.h>
+
+1637958375 c:\huff_plus\compactador.h
+	"arvore.h"
+	"lista.h"
+	"bytes.h"
+	<stdio.h>
+
+1637958437 source:c:\huff_plus\compactador.cpp
+	<math.h>
+	"compactador.h"
+	"bytes.h"
+	"arvore.h"
+	<stdio.h>
+	<iostream>
+	<fstream>
+	<sstream>
 

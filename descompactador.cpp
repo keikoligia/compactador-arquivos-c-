@@ -4,7 +4,6 @@
 #include "descompactador.h"
 #include <stdio.h>
 #include <iostream>
-#include <string>		// Necess�rio para usar strings
 
 using namespace std;
 
@@ -18,11 +17,11 @@ void Descompactador::Descompactar()
 
   if(arqComp == NULL)
   {
-    cout << "Arquivo n�o encontrado!";
+    cout << "Arquivo nao encontrado!";
     exit(0);
   }
 
-  cout << "Digite o nome do arquivo que guardar� a compacta��o: \n";
+  cout << "Digite o nome do arquivo que guardara a compactacao: \n";
   cin >> this->nomeArqDesc;
   this->arqDesc = fopen(this->nomeArqDesc, "w");
 
@@ -34,8 +33,11 @@ void Descompactador::Descompactar()
 
   fread(this->lBytes, sizeof(unsigned int), 256,  this->arqComp);
 
-  NoArvore *arvore = new NoArvore();
-  arvore->FazerArvore(this->lBytes);
+  NoArv *arvore = new NoArv();
+
+  NoArv *raiz = arvore->FazerArvore(this->lBytes);
+
+  //arvore->imprimirArvore(raiz, 0);
 
   unsigned tamanho;
   fread(&tamanho, sizeof(tamanho), 1, this->arqComp);
@@ -43,26 +45,26 @@ void Descompactador::Descompactar()
   unsigned int posicao;
   Bytes *bytes = new Bytes();
 
+  unsigned char aux = 0;
+
   while (posicao < tamanho)
   {
-    NoArvore *noAtual = new NoArvore();
-    noAtual = arvore;
+    //cout << posicao << tamanho << "\n";
+    NoArv *noAtual = new NoArv();
+    noAtual = raiz;
 
     //enquanto o n� nao for folha
-    while (noAtual->GetNoEsq() || noAtual->GetNoDir())
+    while (noAtual->NoEsq || noAtual->NoDir)
     {
-        if(bytes->GerarBit(arqComp, posicao++, &aux))
-            noAtual = noAtual->GetNoDir();
+        if(bytes->GerarBit(this->arqComp, posicao++, &aux))
+            noAtual = noAtual->NoDir;
             //caso gerarbit = 1
         else
-            noAtual = noAtual->GetNoEsq();
+            noAtual = noAtual->NoEsq;
             //caso 0
-      }
-
-      char caractere = noAtual->GetC();
-      fwrite(&(caractere), 1, 1, this->arqDesc);
+    }
+      fwrite(&(noAtual->C), 1, 1, this->arqDesc);
   }
-
   fclose(arqComp);
   fclose(arqDesc);
 };

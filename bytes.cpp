@@ -19,9 +19,9 @@ int Bytes::GerarBit(FILE *arq, int pos, unsigned char *aux)
     return 0;
 }
 
-bool Bytes::BuscaCodigoByte(NoArvore *no, unsigned char c, char *buffer, int tam)
+bool Bytes::BuscaCodigoByte(NoArv *no, unsigned char c, char *buffer, int tam)
 {
-    if (!(no->GetNoEsq() || no->GetNoDir()) && no->GetC() == c)
+    if (!(no->NoEsq || no->NoDir) && no->C == c)
     {
       buffer[tam] = '\0';
       return true;
@@ -30,16 +30,16 @@ bool Bytes::BuscaCodigoByte(NoArvore *no, unsigned char c, char *buffer, int tam
     {
       bool codEncontrado = false;
 
-      if (no->GetNoEsq())
+      if (no->NoEsq)
       {
         buffer[tam] = '0';
-        codEncontrado = BuscaCodigoByte(no->GetNoEsq(), c, buffer, tam + 1);
+        codEncontrado = BuscaCodigoByte(no->NoEsq, c, buffer, tam + 1);
       }
 
-      if (!codEncontrado && no->GetNoDir())
+      if (!codEncontrado && no->NoDir)
       {
         buffer[tam] = '1';
-        codEncontrado = BuscaCodigoByte(no->GetNoDir(), c, buffer, tam + 1);
+        codEncontrado = BuscaCodigoByte(no->NoDir, c, buffer, tam + 1);
       }
 
       if (!codEncontrado)

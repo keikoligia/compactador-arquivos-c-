@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "arvore.h"
 #include "lista.h"
+#include <stdio.h>
 
 NoArvore::NoArvore(){}
 
@@ -69,7 +70,7 @@ NoArv* NoArv::NovoNoArvore(unsigned char c, int freq, NoArv *esq, NoArv *dir)
   return novo;
 }
 
-NoArv* NoArvore::FazerArvore(unsigned int *list)
+NoArv* NoArv::FazerArvore(unsigned int *list)
 {
   NoLista *noLista = new NoLista();
   Lista *l = new Lista(NULL, 0);
@@ -80,6 +81,14 @@ NoArv* NoArvore::FazerArvore(unsigned int *list)
     if(list[i])
       l->InsereNoFila(noLista->NovoNoLista(noArv->NovoNoArvore(i, list[i], NULL, NULL)), &l);
   }
+
+  NoLista *tmp = l->GetInicio();
+    while (tmp != NULL)
+    {
+        printf("CHAR: %c ---- FREQ: %u ---;\n", tmp->no->C, tmp->no->Freq);
+        tmp = tmp->prox;
+    }
+
     while (l->GetQtd() > 1)
     {
       NoArv *noEsq = l->CriaSubarvore(&l);
@@ -90,4 +99,18 @@ NoArv* NoArvore::FazerArvore(unsigned int *list)
       l->InsereNoFila(noLista->NovoNoLista(soma), &l);
     }
     return l->CriaSubarvore(&l);
+}
+
+void NoArv::imprimirArvore(NoArv *raiz, int tam)
+{
+    if (raiz->NoDir == NULL && raiz->NoEsq == NULL)
+    {
+        printf("Folha: %c Altura: %d\n", raiz->C, tam);
+        fflush(stdout);
+    }
+    else
+    {
+        imprimirArvore(raiz->NoEsq, tam + 1);
+        imprimirArvore(raiz->NoDir, tam + 1);
+    }
 }

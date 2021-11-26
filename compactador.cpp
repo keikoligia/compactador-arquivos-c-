@@ -1,5 +1,3 @@
-#define ASCII 256
-#define BYTE_SIZE 8
 
 #include <math.h>
 #include "compactador.h"
@@ -16,10 +14,14 @@ Compactador::Compactador(){}
 
 void Compactador::Compactar()
 {
-    cout << "Digite o nome do arquivo a ser compactado: \n";
-    cin >> this->nomeArqParaComp;
+    unsigned int tamanho;
+    unsigned char aux;
+    unsigned char c;
 
-    this->arqParaComp = fopen(this->nomeArqParaComp, "r");
+    cout << "Digite o nome do arquivo a ser compactado: \n";
+    cin >> this->nomeArqComp;
+
+    this->arqParaComp = fopen(this->nomeArqComp, "r");
 
     if (arqParaComp == NULL)
     {
@@ -38,15 +40,11 @@ void Compactador::Compactar()
         exit(0);
     }
 
-    Bytes *bytes = new Bytes();
+    Bytes* bytes = new Bytes();
     bytes->ObterFreqByte(this->arqParaComp, this->lBytes);
 
-    NoArvore *arvore = new NoArvore();
-    arvore->FazerArvore(this->lBytes);
-
-    unsigned int tamanho;
-    unsigned char aux;
-    unsigned char c;
+    NoArv* arvore = new NoArv();
+    NoArv* raiz = arvore->FazerArvore(this->lBytes);
 
     fwrite(this->lBytes, 256, sizeof(this->lBytes[0]), this->arqComp);
     fseek(this->arqComp, sizeof(unsigned int), SEEK_CUR);
@@ -55,7 +53,8 @@ void Compactador::Compactar()
     {
         char buffer[1024] = {0};
 
-        bytes->BuscaCodigoByte(arvore, c, buffer, 0);
+        Bytes* bytes = new Bytes();
+        bytes->BuscaCodigoByte(raiz, c, buffer, 0);
 
         for (char *i = buffer; *i; i++)
         {

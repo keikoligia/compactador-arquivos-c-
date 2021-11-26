@@ -10,6 +10,8 @@ struct NoArv
     int Freq;
     char C;
     NoArv *NovoNoArvore(unsigned char, int, NoArv*, NoArv*);
+    NoArv* FazerArvore(unsigned int *);
+    void imprimirArvore(NoArv*, int);
 
 };
 
@@ -29,7 +31,6 @@ class NoArvore
     NoArvore* GetNoEsq();
     char GetC();
 
-    NoArv* FazerArvore(unsigned int *);
     NoArvore(unsigned char, int, NoArvore*, NoArvore*);
     NoArvore();
 };

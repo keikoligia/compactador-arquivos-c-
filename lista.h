@@ -33,7 +33,7 @@ class Lista
 
     //NoArvore *CriaSubarvore(Lista*);
     NoArv* CriaSubarvore(Lista**);
-    void InsereNoFila1(NoLista*, Lista*);
+    //void InsereNoFila1(NoLista*, Lista*);
     void InsereNoFila(NoLista*, Lista**);
 
     void SetProx(int);

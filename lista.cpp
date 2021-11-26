@@ -72,20 +72,20 @@ void NoLista::SetProx(NoLista* no)
 void Lista::InsereNoFila(NoLista* n, Lista** l)
 {
   if(!(*l)->GetInicio())
-    (*l)->SetInicio(n);
+    (*l)->Inicio = n;
 
   else if(n->no->Freq < (*l)->Inicio->no->Freq)
   {
     n->prox = (*l)->GetInicio();
-    (*l)->SetInicio(n);
+    (*l)->Inicio = n;
   }
   else
   {
     NoLista *aux = new NoLista();
-    aux = (*l)->GetInicio()->GetProxLigada(n);
+    aux = (*l)->Inicio->GetProxLigada(n);
 
     NoLista *aux2 = new NoLista();
-    aux2 = (*l)->GetInicio();
+    aux2 = (*l)->Inicio;
 
     while(aux && aux->no->Freq <= n->no->Freq)
     {
